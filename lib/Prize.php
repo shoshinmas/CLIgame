@@ -8,8 +8,8 @@ class Prize
 {
 
     public function __construct(
-        private readonly int $calcInput,
-        private readonly int $drawInput
+        private int $calcInput,
+        private int $drawInput
     )
     {
     }
@@ -52,11 +52,11 @@ class Prize
         for ($i = 1; $i <= $this->drawInput; $i++) {
             for ($j = 1; $j <= $this->calcInput; $j++) {
                 if ($i == 1 || $i == $this->drawInput || $j == 1 || $j == $this->calcInput)
-                    CliPrinter::class->out("*  ");
+                    echo "*  ";
                 else
-                    echo CliPrinter::class->out("   ");
+                    echo "   ";
             }
-            CliPrinter::class->newLine();
+            echo "\n";
         }
     }
 }

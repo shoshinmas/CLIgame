@@ -35,11 +35,13 @@ class App
         if (isset($argv[1])) {
             $name = $argv[1];
         }
-
+        $prize = new Prize(0,0);
         $this->getPrinter()->display("Hello $name! Welcome to magnificient world of gambling. If you feel lucky today, 
-        choose your level of difficulty (between 1 and 5, where ONE is the highest");
+        choose your level of difficulty (between 1 and 5, where 1 is the highest");
         $levelInput = (int)$this->getPrinter()->takeinput();
         $level = new GameConditions($levelInput, $levelInput);
+        $level->setCalcTries($levelInput);
+        $level->setDrawTries($levelInput);
         $this->getPrinter()->display("Well done, $name! We will now display an equation. You simply have to type in your 
         result");
         $x = $this->getDrawResult()->generateDraw();
@@ -49,18 +51,17 @@ class App
         $this->getPrinter()->display("$x + $y = ");
         $calcInput = (int) $this->getPrinter()->takeinput();
         $winOne = new WinChecker($calcInput, $calcResult, $level->getCalcTries());
-        $winOne->checkCalc();
-        if($winOne)
+        if($winOne->checkCalc())
         {
-            $this->getPrinter()->display("Well done, $name! We will now draw a number betwen 1 and 100. You simply have 
+            $prize->setCalcInput($calcInput);
+            $this->getPrinter()->display("Well done, $name! We will now draw a number between 1 and 100. You simply have 
             to guess your result. Type it below");
             $z = $this->getDrawResult()->generateDraw();
             $drawInput = (int) $this->getPrinter()->takeinput();
             $winTwo = new WinChecker($drawInput, $z, $level->getDrawTries());
-            $winTwo->checkDraw();
-            if ($winTwo)
+            if ($winTwo->checkDraw())
             {
-                $prize = new Prize($calcInput, $drawInput);
+                $prize->setDrawInput($drawInput);
                 echo "Congratulations, you won a prize";
                 $prize->drawPrize();
             }

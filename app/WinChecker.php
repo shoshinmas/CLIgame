@@ -17,39 +17,38 @@ class WinChecker
     {
     }
 
-    public function checkCalc(){
+    public function checkCalc(): bool
+    {
         for ($i = 1; $i<=$this->numberOfTries; $i++){
             if($this->userInput==$this->victoryCondition)
             {
-                return Memory::class->setCalcInput($this->userInput);
+                return 1;
             }
             else
             {
-                return $this->prompter->tryAgain();
+                return 0;
             }
         }
+        return 0;
     }
 
     public function checkDraw(): bool
     {
+        $this->numberOfPrompts = (int)(($this->numberOfTries)/2);
         for ($i = 1; $i<=$this->numberOfTries; $i++){
             if(($this->userInput==$this->victoryCondition))
             {
-                return Memory::class->setDrawInput($this->userInput);
+                return 1;
             }
             else if (($this->userInput<=$this->victoryCondition) && ($i <= $this->numberOfPrompts))
             {
-                $prompter = $this->prompter->ifNumberLower();
-                return false;
+                echo "The number is lower than your guess, try again";
             }
             else if (($this->userInput>=$this->victoryCondition) && ($i <= $this->numberOfPrompts))
             {
-                return $this->prompter->ifNumberHigher();
-            }
-            else
-            {
-                return $this->prompter->ifRunoutOfChances();
+                echo "The number is higher than your guess, try again";
             }
         }
+        return 0;
     }
 }
