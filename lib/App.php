@@ -8,8 +8,8 @@ use App\WinChecker;
 
 class App
 {
-    protected $printer;
-    protected $drawResult;
+    protected CliPrinter $printer;
+    protected Draw $drawResult;
 
     public function __construct(
     )
@@ -18,12 +18,12 @@ class App
         $this->drawResult = new Draw();
     }
 
-    public function getPrinter()
+    public function getPrinter(): CliPrinter
     {
         return $this->printer;
     }
 
-    public function getDrawResult()
+    public function getDrawResult(): Draw
     {
         return $this->drawResult;
     }
