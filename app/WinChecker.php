@@ -36,17 +36,19 @@ class WinChecker
     {
         $this->numberOfPrompts = ($this->numberOfTries);
         for ($i = 1; $i<=$this->numberOfTries; $i++){
-            if(($this->userInput==$this->victoryCondition))
+            if(($this->userInput===$this->victoryCondition))
             {
                 return 1;
             }
-            else if (($this->userInput<=$this->victoryCondition) && ($i >= $this->numberOfPrompts - 5))
+            else if(($this->userInput<=$this->victoryCondition))
             {
-                echo "The number is lower than your guess, try again";
+                echo "Not yet, it's too low";
+                $this->userInput = (int)readline();
             }
-            else if (($this->userInput>=$this->victoryCondition) && ($i >= $this->numberOfPrompts - 5))
+            else
             {
-                echo "The number is higher than your guess, try again";
+                echo "Not yet, it's too high";
+                $this->userInput = (int)readline();
             }
         }
         return 0;
