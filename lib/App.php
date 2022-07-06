@@ -62,7 +62,7 @@ class App
             if ($winTwo->checkDraw())
             {
                 $prize->setDrawInput($drawInput);
-                echo "Congratulations, you won a prize";
+                echo "Congratulations, you won a prize\n";
                 $prize->drawPrize();
             }
             else
