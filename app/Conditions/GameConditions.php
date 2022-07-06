@@ -6,8 +6,17 @@ namespace app\Conditions;
 
 class GameConditions
 {
-    public function setCalcTries(): int
+
+    public function __construct(
+        protected string $level
+    )
     {
+    }
+
+    public function setCalcTries(string $level): int
+    {
+        $this->level = $level;
+
         return match($this)
         {
             GameLevel::ONE=> 1,
@@ -18,8 +27,9 @@ class GameConditions
         };
     }
 
-    public function setDrawTries(): int
+    public function setDrawTries(string $level): int
     {
+        $this->level = $level;
         return match($this)
         {
             GameLevel::ONE=> 2,
@@ -30,8 +40,9 @@ class GameConditions
         };
     }
 
-    public function setDrawPromptsCount(): int
+    public function setDrawPromptsCount(string $level): int
     {
+        $this->level = $level;
         return match($this)
         {
             GameLevel::ONE=> 1,

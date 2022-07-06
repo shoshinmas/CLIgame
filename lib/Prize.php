@@ -46,15 +46,12 @@ class Prize
         $this->drawInput = $drawInput;
     }
 
-    /**
-     * @param int $drawInput
-     * @param int $calcInput
-     */
-    public function drawPrize(int $drawInput, int $calcInput): void
+    public function drawPrize(): void
     {
-        for ($i = 1; $i <= $drawInput; $i++) {
-            for ($j = 1; $j <= $calcInput; $j++) {
-                if ($i == 1 || $i == $drawInput || $j == 1 || $j == $calcInput)
+
+        for ($i = 1; $i <= $this->drawInput; $i++) {
+            for ($j = 1; $j <= $this->calcInput; $j++) {
+                if ($i == 1 || $i == $this->drawInput || $j == 1 || $j == $this->calcInput)
                     CliPrinter::class->out("*  ");
                 else
                     echo CliPrinter::class->out("   ");

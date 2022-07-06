@@ -29,6 +29,11 @@ class GamePrompter
         $this->drawPrompts = $drawPrompts;
     }
 
+    public function tryAgain(): string
+    {
+        return "The number is incorrect, try again";
+    }
+
     public function ifNumberHigher(): string
     {
         return "The number is higher than your guess, try again";

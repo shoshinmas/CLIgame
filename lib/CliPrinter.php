@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CLIgame;
 
 class CliPrinter
@@ -20,5 +22,10 @@ class CliPrinter
         $this->out($message);
         $this->newline();
         $this->newline();
+    }
+
+    public function takeinput()
+    {
+        return readline('');
     }
 }
