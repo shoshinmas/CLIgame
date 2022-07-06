@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "psr-4": {
+      "CLIgame\\": "lib/",
+      "App\\": "app/"
+    }
+  }
+}
