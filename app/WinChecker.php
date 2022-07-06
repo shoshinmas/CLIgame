@@ -34,17 +34,17 @@ class WinChecker
 
     public function checkDraw(): bool
     {
-        $this->numberOfPrompts = (int)(($this->numberOfTries)/2);
+        $this->numberOfPrompts = ($this->numberOfTries);
         for ($i = 1; $i<=$this->numberOfTries; $i++){
             if(($this->userInput==$this->victoryCondition))
             {
                 return 1;
             }
-            else if (($this->userInput<=$this->victoryCondition) && ($i <= $this->numberOfPrompts))
+            else if (($this->userInput<=$this->victoryCondition) && ($i >= $this->numberOfPrompts - 5))
             {
                 echo "The number is lower than your guess, try again";
             }
-            else if (($this->userInput>=$this->victoryCondition) && ($i <= $this->numberOfPrompts))
+            else if (($this->userInput>=$this->victoryCondition) && ($i >= $this->numberOfPrompts - 5))
             {
                 echo "The number is higher than your guess, try again";
             }
