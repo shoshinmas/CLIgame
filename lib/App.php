@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CLIgame;
 
-use CLIgame\Conditions\CliPrinter;
 
 class App
 {
+    protected $printer;
+
     public function __construct(
-        protected readonly $printer
     )
     {
         $this->printer = new CliPrinter();

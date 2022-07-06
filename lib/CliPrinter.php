@@ -1,6 +1,6 @@
 <?php
 
-namespace CLIgame\Conditions;
+namespace CLIgame;
 
 class CliPrinter
 {

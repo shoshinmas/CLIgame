@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CLIgame\\' => array($baseDir . '/lib'),
-    'App\\' => array($baseDir . '/app'),
+    'lib\\' => array($baseDir . '/lib'),
+    'app\\' => array($baseDir . '/app'),
 );
