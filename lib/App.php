@@ -9,7 +9,6 @@ use App\WinChecker;
 class App
 {
     protected $printer;
-    protected int $level;
     protected $drawResult;
 
     public function __construct(

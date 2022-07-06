@@ -2,12 +2,9 @@
 
 namespace App;
 
-use App\Conditions\GamePrompter;
-
 class WinChecker
 {
     protected int $numberOfPrompts;
-    protected GamePrompter $prompter;
 
     public function __construct(
         private int $userInput,
