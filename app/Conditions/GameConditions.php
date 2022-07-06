@@ -2,54 +2,41 @@
 
 declare(strict_types=1);
 
-namespace app\Conditions;
+namespace App\Conditions;
 
 class GameConditions
 {
 
     public function __construct(
-        protected string $level
+        private int $calcTries,
+        private int $drawTries
     )
     {
     }
 
-    public function setCalcTries(string $level): int
+    /**
+     * @return int
+     */
+    public function getCalcTries(): int
     {
-        $this->level = $level;
-
-        return match($this)
-        {
-            GameLevel::ONE=> 1,
-            GameLevel::TWO=> 2,
-            GameLevel::THREE=> 3,
-            GameLevel::FOUR=> 4,
-            GameLevel::FIVE=> 5,
-        };
+        return $this->calcTries;
     }
 
-    public function setDrawTries(string $level): int
+    /**
+     * @return int
+     */
+    public function getDrawTries(): int
     {
-        $this->level = $level;
-        return match($this)
-        {
-            GameLevel::ONE=> 2,
-            GameLevel::TWO=> 4,
-            GameLevel::THREE=> 6,
-            GameLevel::FOUR=> 8,
-            GameLevel::FIVE=> 10,
-        };
+        return $this->drawTries;
     }
 
-    public function setDrawPromptsCount(string $level): int
+    public function setCalcTries(int $level)
     {
-        $this->level = $level;
-        return match($this)
-        {
-            GameLevel::ONE=> 1,
-            GameLevel::TWO=> 2,
-            GameLevel::THREE=> 3,
-            GameLevel::FOUR=> 4,
-            GameLevel::FIVE=> 5,
-        };
+        $this->calcTries = $level;
+    }
+
+    public function setDrawTries(int $level)
+    {
+        $this->drawTries = 2 * $level;
     }
 }

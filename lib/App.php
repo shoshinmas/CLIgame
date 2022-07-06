@@ -3,15 +3,13 @@
 declare(strict_types=1);
 
 namespace CLIgame;
-use app\Conditions\GameConditions;
-use App\Conditions\GameLevel;
-use App\Conditions\GamePrompter;
+use App\Conditions\GameConditions;
 use App\WinChecker;
 
 class App
 {
     protected $printer;
-    protected $level;
+    protected int $level;
     protected $drawResult;
 
     public function __construct(
@@ -31,14 +29,6 @@ class App
         return $this->drawResult;
     }
 
-    /**
-     * @param mixed $level
-     */
-    public function setLevel(string $level): void
-    {
-        $this->level = $level;
-    }
-
     public function runCommand(array $argv)
     {
         $name = "Robinson Crusoe";
@@ -47,18 +37,18 @@ class App
         }
 
         $this->getPrinter()->display("Hello $name! Welcome to magnificient world of gambling. If you feel lucky today, 
-        choose your level of difficulty (between ONE and FIVE, where ONE is the highest");
-        $level = $this->getPrinter()->takeinput();
-        $this->setLevel($level);
+        choose your level of difficulty (between 1 and 5, where ONE is the highest");
+        $levelInput = (int)$this->getPrinter()->takeinput();
+        $level = new GameConditions($levelInput, $levelInput);
         $this->getPrinter()->display("Well done, $name! We will now display an equation. You simply have to type in your 
         result");
         $x = $this->getDrawResult()->generateDraw();
         $y = $this->getDrawResult()->generateDraw();
         $calc = new Calculator($x, $y);
-        $calcResult = $calc->add($x, $y);
+        $calcResult = $calc->add();
         $this->getPrinter()->display("$x + $y = ");
         $calcInput = (int) $this->getPrinter()->takeinput();
-        $winOne = new WinChecker($calcInput, $calcResult, GameConditions::class->setCalcTries($level));
+        $winOne = new WinChecker($calcInput, $calcResult, $level->getCalcTries());
         $winOne->checkCalc();
         if($winOne)
         {
@@ -66,7 +56,7 @@ class App
             to guess your result. Type it below");
             $z = $this->getDrawResult()->generateDraw();
             $drawInput = (int) $this->getPrinter()->takeinput();
-            $winTwo = new WinChecker($drawInput, $z, GameConditions::class->setDrawTries($level));
+            $winTwo = new WinChecker($drawInput, $z, $level->getDrawTries());
             $winTwo->checkDraw();
             if ($winTwo)
             {
